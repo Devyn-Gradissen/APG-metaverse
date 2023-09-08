@@ -759,56 +759,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &423529120
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 423529121}
-  - component: {fileID: 423529122}
-  m_Layer: 0
-  m_Name: Light Probe Group
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &423529121
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 423529120}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.4547317, y: 0.27271938, z: -0.72758746}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1703568386}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!220 &423529122
-LightProbeGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 423529120}
-  m_Enabled: 1
-  m_SourcePositions:
-  - {x: 2.146144, y: 2.1454465, z: 2.767537}
-  - {x: 2.146144, y: 2.1454465, z: -1}
-  - {x: 2.146144, y: 0.13248897, z: 2.767537}
-  - {x: 2.146144, y: 0.13248897, z: -1}
-  - {x: -2.4144797, y: 2.1454465, z: 2.767537}
-  - {x: -2.4144797, y: 2.1454465, z: -1}
-  - {x: -2.4144797, y: 0.13248897, z: 2.767537}
-  - {x: -2.4144797, y: 0.13248897, z: -1}
-  m_Dering: 1
 --- !u!1001 &446706848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4997,7 +4947,6 @@ Transform:
   - {fileID: 1548251156}
   - {fileID: 1815318737}
   - {fileID: 1598269139}
-  - {fileID: 423529121}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1735663337
@@ -5969,7 +5918,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 9.1835e-41, y: NaN, z: NaN, w: 1.37753e-40}
+  m_BoundingSphereOverride: {x: 4.9358124e-31, y: 9.102061e-12, z: 1.1693397e-19, w: 4.9358124e-31}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
