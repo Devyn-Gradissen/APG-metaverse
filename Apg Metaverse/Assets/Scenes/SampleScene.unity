@@ -489,7 +489,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1070782027}
+  m_Mesh: {fileID: 406833245}
 --- !u!33 &79495889
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -1428,7 +1428,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 246067260}
+  m_Mesh: {fileID: 1717704979}
 --- !u!33 &219250551
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -2049,7 +2049,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1717704979}
+  m_Mesh: {fileID: 1655067622}
 --- !u!33 &253869036
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -26784,9 +26784,21 @@ MonoBehaviour:
   m_Mesh: {fileID: 1100270110}
   m_VersionIndex: 33834
   m_IsSelectable: 1
-  m_SelectedFaces: 
-  m_SelectedEdges: []
-  m_SelectedVertices: 
+  m_SelectedFaces: e5010000
+  m_SelectedEdges:
+  - a: 2106
+    b: 2107
+  - a: 2107
+    b: 2108
+  - a: 2105
+    b: 2106
+  - a: 2108
+    b: 2109
+  - a: 2109
+    b: 2110
+  - a: 2110
+    b: 2105
+  m_SelectedVertices: 3c0800003a0800003b080000390800003d0800003e080000
 --- !u!4 &359358281
 Transform:
   m_ObjectHideFlags: 0
@@ -26797,7 +26809,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.9984398, y: 0, z: -169.8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0001, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -34412,7 +34424,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 406833245}
+  m_Mesh: {fileID: 521443347}
 --- !u!33 &1194679277
 MeshFilter:
   m_ObjectHideFlags: 10
