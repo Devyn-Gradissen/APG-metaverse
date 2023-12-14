@@ -21,5 +21,7 @@ public class playermovement : MonoBehaviour
         movementDirection.Normalize();
 
         transform.Translate(movementDirection * speed *  Time.deltaTime);
+
+        
     }
 }
