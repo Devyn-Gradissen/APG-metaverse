@@ -10,12 +10,16 @@ public class enterscript : MonoBehaviour
     private void Awake()
     {
         // Controleer of gebruiker is ingelogd, zo niet stuur terug naar main menu scene.
-        if (DBmanager.firstname == null && DBmanager.lastname == null)
+        //if (DBmanager.firstname == null && DBmanager.lastname == null)
+        if (DBmanager.username == null)
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
+        // toon username ingelogde gebruiker aan 
+        playerDisplay.text = DBmanager.username;
         // Toon gebruikers voornaam & initielen & achternaam aan.
-        playerDisplay.text = DBmanager.firstname + " " + DBmanager.initials + " " + DBmanager.lastname;   
+        //playerDisplay.text = DBmanager.firstname + " " + DBmanager.initials + " " + DBmanager.lastname;   
+
     }
 
     // Trigger the data save process.
@@ -28,10 +32,11 @@ public class enterscript : MonoBehaviour
     IEnumerator SavePlayerData()
     {
         // Bereid data voor om te verzenden.
-        List<IMultipartFormSection> formData = new List<IMultipartFormSection>();    
-        formData.Add(new MultipartFormDataSection("voornaam", DBmanager.firstname));
-        formData.Add(new MultipartFormDataSection("initialen", DBmanager.initials));
-        formData.Add(new MultipartFormDataSection("achternaam", DBmanager.lastname));
+        List<IMultipartFormSection> formData = new List<IMultipartFormSection>();
+        formData.Add(new MultipartFormDataSection("username", DBmanager.username));
+        //formData.Add(new MultipartFormDataSection("voornaam", DBmanager.firstname));
+        //formData.Add(new MultipartFormDataSection("initialen", DBmanager.initials));
+        //formData.Add(new MultipartFormDataSection("achternaam", DBmanager.lastname));
 
         // Stuur data naar de database/server.
         UnityWebRequest www = UnityWebRequest.Post("http://localhost/sqlconnect/savedata.php", formData);
