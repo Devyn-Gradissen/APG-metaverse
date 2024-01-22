@@ -11,13 +11,15 @@ public class signedintoapg : MonoBehaviour
     private void Awake()
     {
         // Check if a user is logged in; if not, return to the main menu.
-        if (DBmanager.firstname == null && DBmanager.initials == null && DBmanager.lastname == null)
+        //if (DBmanager.firstname == null && DBmanager.initials == null && DBmanager.lastname == null)
+        if (DBmanager.username == null)
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
 
         // Display the player's name and score.
-        playerDisplay.text = DBmanager.firstname + " " + DBmanager.initials + " " + DBmanager.lastname;
+        //playerDisplay.text = DBmanager.firstname + " " + DBmanager.initials + " " + DBmanager.lastname;
+        playerDisplay.text = DBmanager.username;
     }
 
     // Trigger the data save process.
@@ -31,9 +33,10 @@ public class signedintoapg : MonoBehaviour
     {
         // Prepare the data to be sent.
         List<IMultipartFormSection> formData = new List<IMultipartFormSection>();
-        formData.Add(new MultipartFormDataSection("voornaam", DBmanager.firstname));
-        formData.Add(new MultipartFormDataSection("initialen", DBmanager.initials));
-        formData.Add(new MultipartFormDataSection("achternaam", DBmanager.lastname));
+        formData.Add(new MultipartFormDataSection("username", DBmanager.username));
+        //formData.Add(new MultipartFormDataSection("voornaam", DBmanager.firstname));
+        //formData.Add(new MultipartFormDataSection("initialen", DBmanager.initials));
+        //formData.Add(new MultipartFormDataSection("achternaam", DBmanager.lastname));
 
         // Send the data to the server.
         UnityWebRequest www = UnityWebRequest.Post("http://localhost/sqlconnect/savedata.php", formData);

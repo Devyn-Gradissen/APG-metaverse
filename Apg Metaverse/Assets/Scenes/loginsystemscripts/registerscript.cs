@@ -8,12 +8,13 @@ using System;
 public class registerscript : MonoBehaviour
 {
     // UI elementen voor de input en interactie.
-    public InputField firstnameField;
-    public InputField initialsField;
-    public InputField lastnameField; 
+    public InputField usernameField;
+    //public InputField firstnameField;
+    //public InputField initialsField;
+    //public InputField lastnameField; 
     public InputField birthdateField; 
     public InputField locationField; 
-    public InputField sectorField;
+    //public InputField sectorField;
     public InputField passwordField; 
     public Button submitButton; 
     public Button exitButton; 
@@ -36,12 +37,13 @@ public class registerscript : MonoBehaviour
         // Maak een lijst van form data voor de HTTP POST request.
         List<IMultipartFormSection> formData = new List<IMultipartFormSection>
         {
-            new MultipartFormDataSection("voornaam", firstnameField.text),
-            new MultipartFormDataSection("initialen", initialsField.text), 
-            new MultipartFormDataSection("achternaam", lastnameField.text), 
+            //new MultipartFormDataSection("voornaam", firstnameField.text),
+            //new MultipartFormDataSection("initialen", initialsField.text), 
+            //new MultipartFormDataSection("achternaam", lastnameField.text), 
             new MultipartFormDataSection("geboortedatum", birthdateField.text), 
             new MultipartFormDataSection("locatie", locationField.text),
-            new MultipartFormDataSection("afdeling", sectorField.text), 
+            //new MultipartFormDataSection("afdeling", sectorField.text),
+            new MultipartFormDataSection("username", usernameField.text),
             new MultipartFormDataSection("password", passwordField.text) 
         };
 
@@ -74,12 +76,8 @@ public class registerscript : MonoBehaviour
 
 
         // Schakel de submit button aan als alle velden zijn ingevuld.
-        submitButton.interactable = (firstnameField.text.Length >= 2 &&
-        lastnameField.text.Length >= 2 &&
-        sectorField.text.Length >= 2 &&
-        isPasswordValid &&
-        isLocationValid &&
-        isAgeValid);
+        //submitButton.interactable = (firstnameField.text.Length >= 2 && lastnameField.text.Length >= 2 && sectorField.text.Length >= 2 && isPasswordValid && isLocationValid && isAgeValid);
+        submitButton.interactable = (usernameField.text.Length >= 5 && isPasswordValid && isLocationValid && isAgeValid);
     }
 
     // Check if the password meets the specified criteria.
@@ -121,7 +119,7 @@ public class registerscript : MonoBehaviour
         else if (!string.IsNullOrEmpty(location))
         {
             locationerrorMessage.gameObject.SetActive(true);
-            locationerrorMessage.text = "Apg groeifabriek locaties zijn enkel Amsterdam & Heerlen. Vul enkel deze stadsnamen in op het veld.";
+            locationerrorMessage.text = "invoerbare Apg groeifabriek locaties zijn enkel Amsterdam & Heerlen.";
         }
 
         return false;

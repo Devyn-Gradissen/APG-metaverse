@@ -20,7 +20,8 @@ public class mainmenuscript : MonoBehaviour
         // Controleer of gebruiker is ingelogd.
         if (DBmanager.LoggedIn)
         {
-            playerDisplay.text = " Ingelogd als: " + DBmanager.firstname + " " + DBmanager.initials + " " + DBmanager.lastname + "\n Welkom bij de APG virtuele omgeving.";
+            playerDisplay.text = " Ingelogd als: " + DBmanager.username + "\n Welkom bij de APG virtuele omgeving.";
+            //playerDisplay.text = " Ingelogd als: " + DBmanager.firstname + " " + DBmanager.initials + " " + DBmanager.lastname + "\n Welkom bij de APG virtuele omgeving.";
         }
 
         registerButton.interactable = !DBmanager.LoggedIn;
