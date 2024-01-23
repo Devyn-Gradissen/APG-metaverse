@@ -25,10 +25,10 @@ public class KeyboardKey : MonoBehaviour
         shiftCharacter = keyLabel.text.ToUpper();
 
         string numbers = "1234567890";
-            if (numbers.Contains(keyLabel.text))
-            {
-                shiftCharacter = GetShiftCharacter();
-            }
+        if (numbers.Contains(keyLabel.text))
+        {
+            shiftCharacter = GetShiftCharacter();
+        }
 
         string symbols = ",.";
         if (symbols.Contains(keyLabel.text))
@@ -36,7 +36,7 @@ public class KeyboardKey : MonoBehaviour
             shiftCharacter = GetShiftCharacter();
         }
     }
-     
+
     private string GetShiftCharacter()
     {
         switch (keyLabel.text)
@@ -69,7 +69,7 @@ public class KeyboardKey : MonoBehaviour
                 break;
         }
         return string.Empty;
-    } 
+    }
 
     private void HandleShift()
     {
