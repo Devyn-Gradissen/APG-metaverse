@@ -47,7 +47,7 @@ public class KeyboardManager : MonoBehaviour
 
     private void Space()
     {
-        inputField.text += " "; 
+        inputField.text += " ";
     }
 
     private void DeleteKey()
