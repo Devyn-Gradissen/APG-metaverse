@@ -4,23 +4,28 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System;
+using TMPro;
 
 public class registerscript : MonoBehaviour
 {
     // UI elementen voor de input en interactie.
-    public InputField usernameField;
-    //public InputField firstnameField;
-    //public InputField initialsField;
-    //public InputField lastnameField; 
-    public InputField birthdateField; 
-    public InputField locationField; 
-    //public InputField sectorField;
-    public InputField passwordField; 
+    public TMP_InputField user_nameField;
+    public TMP_InputField user_passwordField;
+    public TMP_InputField user_locationField;
+    public TMP_InputField user_birthdateField;
     public Button submitButton; 
     public Button exitButton; 
     public Text errorMessage;
     public Text locationerrorMessage;
-    public Text successMessage; 
+    public Text successMessage;
+    //public InputField usernameField;
+    //public InputField firstnameField;
+    //public InputField initialsField;
+    //public InputField lastnameField; 
+    //public InputField birthdateField; 
+    //public InputField locationField; 
+    //public InputField sectorField;
+    //public InputField passwordField; 
 
     //Url voor php script voor registratie.
     private string registerURL = "http://localhost/apg_metaverse/register.php";
@@ -40,11 +45,11 @@ public class registerscript : MonoBehaviour
             //new MultipartFormDataSection("voornaam", firstnameField.text),
             //new MultipartFormDataSection("initialen", initialsField.text), 
             //new MultipartFormDataSection("achternaam", lastnameField.text), 
-            new MultipartFormDataSection("geboortedatum", birthdateField.text), 
-            new MultipartFormDataSection("locatie", locationField.text),
+            new MultipartFormDataSection("geboortedatum", user_birthdateField.text), 
+            new MultipartFormDataSection("locatie", user_locationField.text),
             //new MultipartFormDataSection("afdeling", sectorField.text),
-            new MultipartFormDataSection("username", usernameField.text),
-            new MultipartFormDataSection("password", passwordField.text) 
+            new MultipartFormDataSection("username", user_nameField.text),
+            new MultipartFormDataSection("password", user_passwordField.text) 
         };
 
         // maak een HTTP POST request met UnityWebRequest.
@@ -70,14 +75,14 @@ public class registerscript : MonoBehaviour
     // verifieer de input fields om te controleren of de submit button geactiveerd mag zijn.
     public void VerifyInputs()
     {
-        bool isPasswordValid = IsPasswordValid(passwordField.text);
-        bool isLocationValid = IsLocationValid(locationField.text);
-        bool isAgeValid = IsAgeValidFormat(birthdateField.text);
+        bool isPasswordValid = IsPasswordValid(user_passwordField.text);
+        bool isLocationValid = IsLocationValid(user_locationField.text);
+        bool isAgeValid = IsAgeValidFormat(user_birthdateField.text);
 
 
         // Schakel de submit button aan als alle velden zijn ingevuld.
         //submitButton.interactable = (firstnameField.text.Length >= 2 && lastnameField.text.Length >= 2 && sectorField.text.Length >= 2 && isPasswordValid && isLocationValid && isAgeValid);
-        submitButton.interactable = (usernameField.text.Length >= 5 && isPasswordValid && isLocationValid && isAgeValid);
+        submitButton.interactable = (user_nameField.text.Length >= 5 && isPasswordValid && isLocationValid && isAgeValid);
     }
 
     // Check if the password meets the specified criteria.
