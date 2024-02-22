@@ -1,9 +1,9 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 
-public class SelectHairColor : MonoBehaviour
+public class SelectShirtColor : MonoBehaviour
 {
     [Header("Color Values")]
     public float redAmount;
@@ -15,24 +15,26 @@ public class SelectHairColor : MonoBehaviour
     public Slider greenSlider;
     public Slider blueSlider;
 
-    private Color currentHairColor;
+    private Color currentShirtColor;
 
     //Grabs the material from the skin mesh renderer and changes the color properties of the material 
     public List<SkinnedMeshRenderer> rendererlist = new List<SkinnedMeshRenderer>();
+
     public void UpdateSliders()
     {
         redAmount = redSlider.value;
         greenAmount = greenSlider.value;
         blueAmount = blueSlider.value;
-        SetHairColor();
+        SetShirtColor();
     }
-    public void SetHairColor()
+
+    public void SetShirtColor()
     {
-        currentHairColor = new Color(redAmount, greenAmount, blueAmount);
+        currentShirtColor = new Color(redAmount, greenAmount, blueAmount);
 
         for (int i = 0; i < rendererlist.Count; i++)
         {
-            rendererlist[i].material.SetColor("_BaseColor", currentHairColor);
+            rendererlist[i].material.SetColor("_BaseColor", currentShirtColor);
         }
     }
 }
