@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 
      ArrayList credentials;  
      
-    public Text welcomeText;
+    //public Text welcomeText;
 
     public string username; // User identifier (deze houd je gebruikersnaam vast )
 
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
    
-        welcomeText.text = "Welcome, " + username + "!";
+        //welcomeText.text = "Welcome, " + username + "!";
     }
 
     // Update is called once per frame
