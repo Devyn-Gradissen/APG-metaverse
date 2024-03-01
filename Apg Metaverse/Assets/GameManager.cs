@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public string username; // User identifier (deze houd je gebruikersnaam vast )
 
     // Manages message history size
-    public int maxMessages = 25; // Message history limit (Determines the maximum number of messages in the chat history)
+    public int maxMessages = 100; // Message history limit (Determines the maximum number of messages in the chat history)
 
     // UI elements
     public GameObject chatPanel, textObject; // Visual chat elements (References to the chat panel and text objects in the Unity UI)

@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.Networking; // Import UnityWebRequest
+using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class dataloader : MonoBehaviour
 {
@@ -8,7 +10,7 @@ public class dataloader : MonoBehaviour
 
     IEnumerator Start()
     {
-        UnityWebRequest ChatDataRequest = UnityWebRequest.Get("http://localhost/school%20leerjaar%203/chatdata/ChatData.php"); //connectie met de data
+        UnityWebRequest ChatDataRequest = UnityWebRequest.Get("http://localhost/apg/chatdata.php"); //connectie met de data
         yield return ChatDataRequest.SendWebRequest(); // wacht totdat data is gedownload
         
         if (ChatDataRequest.result == UnityWebRequest.Result.Success)
