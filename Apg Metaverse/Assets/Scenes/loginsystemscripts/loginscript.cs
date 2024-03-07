@@ -18,7 +18,7 @@ public class loginscript : MonoBehaviour
     public Text errorMessage; // Error message for when you incorrectly fill in the login credentials.
     public TMP_InputField usernameField;
     public TMP_InputField userpasswordField;
-
+  
     // Trigger het loginprocess.
     public void CallLogin()
     {
@@ -31,6 +31,7 @@ public class loginscript : MonoBehaviour
         // Bereid ingevulde data voor om naar database/server te sturen voor controleren.
         List<IMultipartFormSection> formData = new List<IMultipartFormSection>();
         formData.Add(new MultipartFormDataSection("username", usernameField.text));
+        PlayerPrefs.SetString("Playername", usernameField.text);
         //formData.Add(new MultipartFormDataSection("voornaam", firstnameField.text));
         //formData.Add(new MultipartFormDataSection("initialen", initialsField.text));
         //formData.Add(new MultipartFormDataSection("achternaam", lastnameField.text));

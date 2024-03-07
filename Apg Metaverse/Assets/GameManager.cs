@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        username = PlayerPrefs.GetString("Playername");
         playerController.SetGameManager(this); // Set reference to GameManager in PlayerController
     }
 
