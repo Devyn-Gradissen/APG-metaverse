@@ -6,20 +6,27 @@ using UnityEngine.EventSystems;
 
 public class dataloader : MonoBehaviour
 {
+    public GameManager gameManager; // Reference to the GameManager script
     public string[] chat;
 
     IEnumerator Start()
     {
-        UnityWebRequest ChatDataRequest = UnityWebRequest.Get("http://localhost/apg/chatdata.php"); //connectie met de data
-        yield return ChatDataRequest.SendWebRequest(); // wacht totdat data is gedownload
-        
+        UnityWebRequest ChatDataRequest = UnityWebRequest.Get("http://localhost/apg/chatdata.php"); // Connect to the data source
+        yield return ChatDataRequest.SendWebRequest(); // Wait until data is downloaded
+
         if (ChatDataRequest.result == UnityWebRequest.Result.Success)
         {
-            string ChatDataString = ChatDataRequest.downloadHandler.text; //maak de data klaar om te zien
-            Debug.Log(ChatDataString); // laat de data zien
-            
-            chat = ChatDataString.Split(';');
-            Debug.Log(GetDataValue(chat[0], "chat")); // Replace "your_index_here" with the actual index you want to retrieve
+            string ChatDataString = ChatDataRequest.downloadHandler.text; // Get the downloaded data
+            Debug.Log(ChatDataString); // Log the data
+
+            chat = ChatDataString.Split(';'); // Split the data into individual chat messages
+
+            // Iterate through the chat messages and pass them to the GameManager
+            foreach (string messageData in chat)
+            {
+                string messageText = GetDataValue(messageData, "chat"); // Extract the chat message
+                gameManager.SendMessageToChat(messageText, Message.MessageType.info); // Pass the message to GameManager
+            }
         }
         else
         {

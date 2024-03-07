@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
 public class GameManager : MonoBehaviour
 {
@@ -40,7 +42,7 @@ public class GameManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 // Send player's message and clear input
-                SendMessageToChat(username + ": " + chatBox.text, Message.MessageType.playerMessage);
+                SendMessageToChat(DBmanager.username + ": " + chatBox.text, Message.MessageType.playerMessage);
                 chatBox.text = "";
             }
         }

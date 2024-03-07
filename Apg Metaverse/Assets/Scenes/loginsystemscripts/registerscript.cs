@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 using System;
 using TMPro;
@@ -28,7 +29,7 @@ public class registerscript : MonoBehaviour
     //public InputField passwordField; 
 
     //Url voor php script voor registratie.
-    private string registerURL = "http://localhost/apg_metaverse/register.php";
+    private string registerURL = "http://localhost/apg/register.php";
 
     // Start het registratieprocess.
     public void CallRegister()
@@ -61,7 +62,12 @@ public class registerscript : MonoBehaviour
         {
             Debug.Log("User created successfully."); 
             successMessage.gameObject.SetActive(true); 
-            successMessage.text = "Registratie is succesvol."; 
+            successMessage.text = "Registratie is succesvol.";
+            
+            // Wait for 5 seconds before loading the main menu scene
+            yield return new WaitForSeconds(2f);
+
+            SceneManager.LoadScene(0); // Load the main menu scene
         }
         else
         {
@@ -82,7 +88,7 @@ public class registerscript : MonoBehaviour
 
         // Schakel de submit button aan als alle velden zijn ingevuld.
         //submitButton.interactable = (firstnameField.text.Length >= 2 && lastnameField.text.Length >= 2 && sectorField.text.Length >= 2 && isPasswordValid && isLocationValid && isAgeValid);
-        submitButton.interactable = (user_nameField.text.Length >= 5 && isPasswordValid && isLocationValid && isAgeValid);
+        submitButton.interactable = (user_nameField.text.Length >= 5 && user_nameField.text.Length <= 30 && isPasswordValid && isLocationValid && isAgeValid);
     }
 
     // Check if the password meets the specified criteria.
