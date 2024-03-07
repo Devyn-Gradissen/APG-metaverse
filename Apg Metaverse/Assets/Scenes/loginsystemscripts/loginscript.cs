@@ -3,19 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using TMPro;
 
 public class loginscript : MonoBehaviour
 {
     // UI elementen voor gebruiker input.
-    public InputField firstnameField; // inputfield voor je username
+    //public InputField firstnameField; // inputfield voor je username
     //public InputField firstnameField; // Inputfield voor je voornaam.
     //public InputField initialsField; // Inputfield voor de initieelen.
     //public InputField lastnameField; // Inputfield voor je achternaam.
-    public InputField passwordField; // Inputfield voor het wachtwoord, het veld is beschermd.
+    //public InputField passwordField; // Inputfield voor het wachtwoord, het veld is beschermd.
     public Button submitButton; //Button om in te loggen. Na inlog stuurt het je terug naar main menu scene.
     public Button exitButton; // Button om uit de login scene te gaan en terug te gaan naar de main menu scene zonder inloggen.
     public Text errorMessage; // Error message for when you incorrectly fill in the login credentials.
-
+    public TMP_InputField usernameField;
+    public TMP_InputField userpasswordField;
+  
     // Trigger het loginprocess.
     public void CallLogin()
     {
@@ -27,11 +30,12 @@ public class loginscript : MonoBehaviour
     {
         // Bereid ingevulde data voor om naar database/server te sturen voor controleren.
         List<IMultipartFormSection> formData = new List<IMultipartFormSection>();
-        formData.Add(new MultipartFormDataSection("username", firstnameField.text));
+        formData.Add(new MultipartFormDataSection("username", usernameField.text));
+        PlayerPrefs.SetString("Playername", usernameField.text);
         //formData.Add(new MultipartFormDataSection("voornaam", firstnameField.text));
         //formData.Add(new MultipartFormDataSection("initialen", initialsField.text));
         //formData.Add(new MultipartFormDataSection("achternaam", lastnameField.text));
-        formData.Add(new MultipartFormDataSection("password", passwordField.text));
+        formData.Add(new MultipartFormDataSection("password", userpasswordField.text));
 
         // Stuur een login request naar de database/server.
         UnityWebRequest www = UnityWebRequest.Post("http://localhost/apg_metaverse/login.php", formData);
@@ -44,7 +48,7 @@ public class loginscript : MonoBehaviour
             if (responseText[0] == '0')
             {
                 // Succesvolle login, stuur gebruiker terug naar main menu scene.
-                DBmanager.username = firstnameField.text;
+                DBmanager.username = usernameField.text;
                 //DBmanager.firstname = firstnameField.text;
                 //DBmanager.initials = initialsField.text;
                 //DBmanager.lastname = lastnameField.text;
@@ -72,7 +76,7 @@ public class loginscript : MonoBehaviour
     // Zet de submit button aan als alle velden zijn ingevuld.
     public void VerifyInputs()
     {
-        submitButton.interactable = (firstnameField.text.Length >= 2 && passwordField.text.Length >= 8);
+        submitButton.interactable = (usernameField.text.Length >= 2 && userpasswordField.text.Length >= 8);
         //submitButton.interactable = (firstnameField.text.Length >= 2 && initialsField.text.Length > 0 && lastnameField.text.Length >= 2 && passwordField.text.Length >= 8);
     }
 
