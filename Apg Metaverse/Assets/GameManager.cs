@@ -48,13 +48,7 @@ public class GameManager : MonoBehaviour
     }
 
     // First Update function
-void Update1()
-{
-    // Check if the player is currently moving
-    bool isMoving = playerController.IsMoving();
-
-    // Allow chat input only if the player is not moving
-    if (!isMoving)
+    void Update1()
     {
         if (chatBox.text != "")
         {
@@ -62,28 +56,20 @@ void Update1()
             {
                 SendMessageToChat(username + ": " + chatBox.text, Message.MessageType.playerMessage);
                 chatBox.text = "";
+
+                // Toggle player movement
+                playerController.ToggleMovement(false);
             }
         }
         else
         {
             if (!chatBox.isFocused && Input.GetKeyDown(KeyCode.Return))
                 chatBox.ActivateInputField(); // Activate chat input
-        }
-    }
 
-    // Toggle player movement based on chat input focus
-    if (!chatBox.isFocused && !isMoving)
-    {
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-        {
-            playerController.ToggleMovement(true); // Enable movement
-        }
-        else
-        {
-            playerController.ToggleMovement(false); // Disable movement
+            // Ensure movement is enabled when chat is not focused
+            playerController.ToggleMovement(true);
         }
     }
-}
 
     // Second Update function
     void Update2()
