@@ -96,7 +96,7 @@ public class TutorialMessage : MonoBehaviour
         }
 
         // If activity exceeds 4 seconds and final message is shown, hide it
-        if (activityTimer > 4f && finalText.enabled)
+        if (activityTimer > 3f && finalText.enabled)
         {
             finalText.enabled = false;
         }
@@ -109,7 +109,7 @@ public class TutorialMessage : MonoBehaviour
                 lookAroundText.color = Color.green;
                 
                 // Hide look around message with a delay of 1 second
-                Invoke("HideLookAroundMessage", 1f);
+                Invoke("HideLookAroundMessage", 2f);
             }
         }
 
@@ -121,7 +121,7 @@ public class TutorialMessage : MonoBehaviour
                 forwardText.color = Color.green;
                 
                 // Hide forward message with a delay of 1 second
-                Invoke("HideForwardMessage", 1f);
+                Invoke("HideForwardMessage", 1.5f);
             }
         }
 
@@ -133,7 +133,7 @@ public class TutorialMessage : MonoBehaviour
                 backwardText.color = Color.green;
                 
                 // Hide backward message with a delay of 1 second
-                Invoke("HideBackwardMessage", 1f);
+                Invoke("HideBackwardMessage", 1.5f);
             }
         }
 
@@ -145,7 +145,7 @@ public class TutorialMessage : MonoBehaviour
                 leftText.color = Color.green;
                 
                 // Hide left message with a delay of 1 second
-                Invoke("HideLeftMessage", 1f);
+                Invoke("HideLeftMessage", 1.5f);
             }
         }
 
@@ -157,7 +157,7 @@ public class TutorialMessage : MonoBehaviour
                 rightText.color = Color.green;
                 
                 // Hide right message with a delay of 1 second
-                Invoke("HideRightMessage", 1f);
+                Invoke("HideRightMessage", 1.5f);
             }
         }
     }
