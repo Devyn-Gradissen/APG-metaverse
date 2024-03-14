@@ -38,7 +38,7 @@ public class SceneLoader : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     // Load the specified scene ("SampleScene" in this case)
-                    SceneManager.LoadScene("mainmenu");
+                    SceneManager.LoadScene("SampleScene");
                 }
             }
             else
