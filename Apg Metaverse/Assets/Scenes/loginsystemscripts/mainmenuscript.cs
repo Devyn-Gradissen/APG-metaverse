@@ -12,6 +12,8 @@ public class mainmenuscript : MonoBehaviour
     public Button loginButton;
     public Button playButton; 
     public Button exitButton; 
+    public Button customize_your_character;
+    public Button tutorial;
     public Text playerDisplay; 
 
     // Start functie roept meteen op
@@ -27,6 +29,8 @@ public class mainmenuscript : MonoBehaviour
         registerButton.interactable = !DBmanager.LoggedIn;
         loginButton.interactable = !DBmanager.LoggedIn;
         playButton.interactable = DBmanager.LoggedIn;
+        customize_your_character.interactable = DBmanager.LoggedIn;
+        tutorial.interactable = DBmanager.LoggedIn;
     }
 
     // Sturen naar registratie.
@@ -45,6 +49,16 @@ public class mainmenuscript : MonoBehaviour
     public void GoToAPG()
     {
         SceneManager.LoadScene(3); 
+    }
+
+    public void GoToCustomize()
+    {
+        SceneManager.LoadScene(4); 
+    }
+
+    public void GoToTutorial()
+    {
+        SceneManager.LoadScene(5); 
     }
 
     // Method to exit the application
