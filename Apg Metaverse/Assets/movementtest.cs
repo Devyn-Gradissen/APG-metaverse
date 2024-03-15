@@ -4,10 +4,11 @@ using UnityEngine;
 [RequireComponent(typeof(CapsuleCollider))]
 public class PlayerController : MonoBehaviour
 {
+    
     public float moveSpeed = 5f;
     public float mouseSensitivity = 2f; // Sensitivity of mouse movement
     public Camera playerCamera; // Assign the camera in the Unity editor
-    
+
     private Rigidbody rb;
     private CapsuleCollider capsuleCollider;
     private float verticalLookRotation = 0f;

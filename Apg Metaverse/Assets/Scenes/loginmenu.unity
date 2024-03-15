@@ -729,11 +729,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec731cfbc94416e408fcf72c9d0b12ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstnameField: {fileID: 1816088888}
-  passwordField: {fileID: 468906166}
   submitButton: {fileID: 1835848253}
   exitButton: {fileID: 1513321285}
   errorMessage: {fileID: 843192947}
+  usernameField: {fileID: 2818815}
+  userpasswordField: {fileID: 2056924117}
 --- !u!114 &43860262
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -37,7 +37,7 @@ public class loginscript : MonoBehaviour
         formData.Add(new MultipartFormDataSection("password", userpasswordField.text));
 
         // Stuur een login request naar de database/server.
-        UnityWebRequest www = UnityWebRequest.Post("http://localhost/apg_metaverse/login.php", formData);
+        UnityWebRequest www = UnityWebRequest.Post("http://localhost/apg/login.php", formData);
         yield return www.SendWebRequest();
 
         // Controleer of er een succesvol resultaat is of een foutmelding.
