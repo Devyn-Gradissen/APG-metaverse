@@ -14,45 +14,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/loginmenu.unity
     guid: d4789aaa9d54d3245bc20d51c820e8c5
-  - enabled: 0
-    path: Assets/Scenes/vr-desktop-choice.unity
-    guid: ce3b6e7d6e09b4f44b0a52ee529034bd
-  - enabled: 0
-    path: Assets/Scenes/SampleSceneVR.unity
-    guid: 8df416c17d38f74469c3c8ec06085036
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 55daccc09a3b69647bbab145b54a3ab3
   - enabled: 1
+    path: Assets/Scenes/Character Customization/CharacterCustomization 2.0.unity
+    guid: c6bdddfbd94f5bd489fedffc8558e0a8
+  - enabled: 1
+    path: Assets/Scenes/Tutorial Scene.unity
+    guid: 23c45235e920a604bb3ffb1c8a1987ae
+  - enabled: 1
     path: Assets/Scenes/instellingen.unity
     guid: dc4b920444f10f64e9c6c0a32bd4bd1b
-  - enabled: 1
-    path: Assets/Scenes/Keybinds.unity
-    guid: 9b9e6fbe7a1faa74ba31b0dbfda4e22c
-  - enabled: 1
-    path: Assets/Scenes/Character Customization/CharacterCustomization.unity
-    guid: 97e7713437c5138419262d0674516694
-  - enabled: 1
-    path: Assets/Scenes/Character Customization/Sex.unity
-    guid: 75b2aeeb3d1484a40b7657d0cdfb3d47
-  - enabled: 1
-    path: Assets/Scenes/Character Customization/ShirtColor.unity
-    guid: e899871c66a2d2949ac2738321e26dd2
-  - enabled: 1
-    path: Assets/Scenes/Character Customization/ShoesColor.unity
-    guid: 1fa9fbc7c8a9e5b478c1dd013f6d2665
-  - enabled: 1
-    path: Assets/Scenes/Character Customization/SkinColor.unity
-    guid: aed428afe3a100f4699780b954143eb7
-  - enabled: 1
-    path: Assets/Scenes/Character Customization/PantsColor.unity
-    guid: 4ae6792b69a7e98469896a7d4804ce82
-  - enabled: 1
-    path: Assets/Scenes/Character Customization/HairColor.unity
-    guid: d4478ac29364df84d80e4cb80623d2f5
-  - enabled: 1
-    path: Assets/Scenes/Character Customization/EyeColor.unity
-    guid: 2d7cf02d595c5ca4ba21a635ce6d5bc2
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: dc5a169419fa04987b057f65238cf3ba, type: 2}

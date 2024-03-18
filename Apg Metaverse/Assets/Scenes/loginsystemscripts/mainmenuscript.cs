@@ -14,7 +14,8 @@ public class mainmenuscript : MonoBehaviour
     public Button exitButton; 
     public Button customize_your_character;
     public Button tutorial;
-    public Text playerDisplay; 
+    public Button instellingen;
+    public Text playerDisplay;
 
     // Start functie roept meteen op
     private void Start()
@@ -31,6 +32,7 @@ public class mainmenuscript : MonoBehaviour
         playButton.interactable = DBmanager.LoggedIn;
         customize_your_character.interactable = DBmanager.LoggedIn;
         tutorial.interactable = DBmanager.LoggedIn;
+        instellingen.interactable = DBmanager.LoggedIn;
     }
 
     // Sturen naar registratie.
@@ -59,6 +61,10 @@ public class mainmenuscript : MonoBehaviour
     public void GoToTutorial()
     {
         SceneManager.LoadScene(5); 
+    }
+    public void GoToInstellingen()
+    {
+        SceneManager.LoadScene(6); 
     }
 
     // Method to exit the application
