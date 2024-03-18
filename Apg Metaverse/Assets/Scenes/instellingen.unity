@@ -205,7 +205,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 31775336}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 206459212}
+        m_TargetAssemblyTypeName: GoToMainMenu, Assembly-CSharp
+        m_MethodName: GoBackToMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &31775336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,6 +348,7 @@ GameObject:
   - component: {fileID: 206459209}
   - component: {fileID: 206459208}
   - component: {fileID: 206459211}
+  - component: {fileID: 206459212}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -506,6 +519,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
+--- !u!114 &206459212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206459202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2626e54d26bbc64459af92eab8014f15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &243171420
 GameObject:
   m_ObjectHideFlags: 0
@@ -2302,7 +2327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 803595772}
-  phpScriptURL: http://localhost/school%20leerjaar%203/slider/save_slider.php
+  phpScriptURL: http://localhost/apg/instellingen.php
 --- !u!4 &1443372057
 Transform:
   m_ObjectHideFlags: 0
