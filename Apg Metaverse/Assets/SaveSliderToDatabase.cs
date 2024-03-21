@@ -6,7 +6,9 @@ using UnityEngine.Networking;
 
 public class SaveSliderValue : MonoBehaviour
 {
-    public Slider slider;
+    public Slider Helderheid;
+    public Slider Volume;
+    public Slider Kleurenblind;
     public string phpScriptURL;
 
     public void SaveSliderToDatabase()
@@ -18,7 +20,10 @@ public class SaveSliderValue : MonoBehaviour
     {
         // Create form
         WWWForm form = new WWWForm();
-        form.AddField("sliderValue", slider.value.ToString());
+        form.AddField("HelderheidValue", Helderheid.value.ToString());
+        form.AddField("VolumeValue", Volume.value.ToString());
+        form.AddField("KleurenblindValue", Kleurenblind.value.ToString());
+      
 
         // Send data to PHP script
         using (UnityWebRequest www = UnityWebRequest.Post(phpScriptURL, form))
