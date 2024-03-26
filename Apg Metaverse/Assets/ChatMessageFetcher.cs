@@ -6,13 +6,13 @@ using UnityEngine.Networking;
 
 public class ChatMessageFetcher : MonoBehaviour
 {
-    public string chatDataFetcherURL = "http://localhost/apg/ChatDataFetch.php"; // URL of your PHP script to fetch chat messages
+    public string chatDataFetcherURL = "http://localhost/apg/ChatData.php"; // php link
     public GameObject chatPanel, textObject;
     public Color playerMessage, info;
-    public float fetchInterval = 5f; // Interval for fetching chat messages (in seconds)
+    public float fetchInterval = 1f; // tijd om chatberichten te ophalen
 
     private List<string> fetchedMessages = new List<string>();
-    private HashSet<int> displayedLogs = new HashSet<int>(); // HashSet to store logs already displayed
+    private HashSet<int> displayedLogs = new HashSet<int>(); // HashSet om logs te onthouden die al getoond zijn.
 
     void Start()
     {
@@ -41,8 +41,7 @@ public class ChatMessageFetcher : MonoBehaviour
         {
             string[] messages = www.downloadHandler.text.Split(new char[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
 
-            // Clear previously fetched messages and displayed logs
-            fetchedMessages.Clear();
+            fetchedMessages.Clear(); //wis oude chat en refresh na nieuwe logs
             displayedLogs.Clear();
 
             foreach (string message in messages)
@@ -56,7 +55,6 @@ public class ChatMessageFetcher : MonoBehaviour
 
     void DisplayFetchedMessages()
     {
-        // Clear chat panel before displaying new messages
         foreach (Transform child in chatPanel.transform)
         {
             Destroy(child.gameObject);
@@ -73,15 +71,14 @@ public class ChatMessageFetcher : MonoBehaviour
                 {
                     displayedLogs.Add(logCount);
 
-                    // Join all parts except the first one (log count) to reconstruct the message content
-                    string sender = parts[1];
+                    string sender = parts[1]; //alle onderdelen samenvoegen behalven de log die dient als enkel een id in functie
                     string messageContent = string.Join(":", parts, 2, parts.Length - 2);
 
-                    // Instantiate new text object in chat panel for each fetched message
+                    // new text object in chatpanel voor elk nieuw bericht
                     GameObject newText = Instantiate(textObject, chatPanel.transform);
                     Text newTextComponent = newText.GetComponent<Text>();
-                    newTextComponent.text = sender + ": " + messageContent; // Sender name + message content
-                    newTextComponent.color = info; // Assuming all fetched messages are of 'info' type
+                    newTextComponent.text = sender + ": " + messageContent; 
+                    newTextComponent.color = info; 
                 }
             }
         }
