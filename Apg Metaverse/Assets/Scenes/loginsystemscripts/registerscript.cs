@@ -121,7 +121,7 @@ public class registerscript : MonoBehaviour
     bool IsLocationValid(string location)
     {
         // Apg heeft 2 locaties in nederland: Amsterdam en Heerlen. Andere opties invullen weerhoudt je van registratie.
-        if (string.Equals(location, "Heerlen") || string.Equals(location, "Amsterdam"))
+        if (string.Equals(location, "Heerlen") || string.Equals(location, "Amsterdam") || string.Equals(location, "heerlen") || string.Equals(location, "amsterdam"))
         {
             locationerrorMessage.gameObject.SetActive(false);
             return true;
@@ -130,7 +130,7 @@ public class registerscript : MonoBehaviour
         else if (!string.IsNullOrEmpty(location))
         {
             locationerrorMessage.gameObject.SetActive(true);
-            locationerrorMessage.text = "invoerbare Apg groeifabriek locaties zijn enkel Amsterdam & Heerlen.";
+            locationerrorMessage.text = "Invoerbare Apg locaties zijn enkel Amsterdam & Heerlen.";
         }
 
         return false;
