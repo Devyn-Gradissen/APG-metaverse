@@ -4,44 +4,60 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 
-public class SaveSliderValue : MonoBehaviour 
-{ 
-    // alle sliders en de link naar de script naar de database benoemen en koppelen in unity
+public class SaveSliderValue : MonoBehaviour
+{
     public Slider Helderheid;
     public Slider Volume;
-    public Slider Kleurenblind;
+    public Dropdown Kleurenblind;
+    public Dropdown PushToTalk;
     public string phpScriptURL;
 
-    public void SaveSliderToDatabase() //zorgen dat het script gestart wordt
+    // Enum to represent options for PushToTalk dropdown
+    public enum PushToTalkOption
     {
-        StartCoroutine(SendSliderValue());
+        On,
+        Off
     }
 
-    IEnumerator SendSliderValue()
+    // Enum to represent options for Kleurenblind dropdown
+    public enum KleurenblindOption
     {
-        Debug.Log("HelderheidValue: " + Helderheid.value.ToString());
-        Debug.Log("VolumeValue: " + Volume.value.ToString());
-        Debug.Log("KleurenblindValue: " + Kleurenblind.value.ToString());
+        Option1,
+        Option2,
+        Option3,
+        Option4,
+        Option5
+    }
 
-        // maak het form, zodat het naar de database gestuurt kan worden
+    public void SaveDataToDatabase()
+    {
+        StartCoroutine(SendDataToDatabase());
+    }
+
+    IEnumerator SendDataToDatabase()
+    {
+        Debug.Log("Helderheid Value: " + Helderheid.value.ToString());
+        Debug.Log("Volume Value: " + Volume.value.ToString());
+        Debug.Log("Kleurenblind Value: " + ((KleurenblindOption)Kleurenblind.value).ToString());
+        Debug.Log("PushToTalk Value: " + ((PushToTalkOption)PushToTalk.value).ToString());
+
         WWWForm form = new WWWForm();
         form.AddField("HelderheidValue", Helderheid.value.ToString());
         form.AddField("VolumeValue", Volume.value.ToString());
-        form.AddField("KleurenblindValue", Kleurenblind.value.ToString());
-      
+        form.AddField("KleurenblindValue", ((KleurenblindOption)Kleurenblind.value).ToString());
+        form.AddField("PushToTalkValue", ((PushToTalkOption)PushToTalk.value).ToString());
 
-        // stuur data naar php script gelinkt bovenaan
         using (UnityWebRequest www = UnityWebRequest.Post(phpScriptURL, form))
         {
             yield return www.SendWebRequest();
 
             if (www.result != UnityWebRequest.Result.Success)
             {
-                Debug.LogError("Failed to send slider value to database: " + www.error); // als er fouten zijn worden die getoont
+                Debug.LogError("Failed to send data to database: " + www.error);
             }
             else
             {
-                Debug.Log("Slider value saved successfully"); // als de slider het goed heeft opgeslagen dan komt dit in unity te staan
+                Debug.Log("Data saved successfully");
             }
         }
     }
