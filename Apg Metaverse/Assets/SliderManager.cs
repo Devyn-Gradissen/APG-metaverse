@@ -9,7 +9,7 @@ public class SliderManager : MonoBehaviour
     // zorgen dat je de sliders kan koppelen in unity
     public Slider Helderheid;
     public Slider Volume;
-    public Slider Kleurenblind;
+   
 
     public void SaveSliderValue()
     {
@@ -24,7 +24,7 @@ public class SliderManager : MonoBehaviour
         WWWForm form = new WWWForm();
         form.AddField("HelderheidValue", (int)Helderheid.value);
         form.AddField("VolumeValue", (int)Volume.value);
-        form.AddField("KleurenblindValue", (int)Kleurenblind.value);
+       
 
         using (UnityWebRequest www = UnityWebRequest.Post(url, form))
         {
