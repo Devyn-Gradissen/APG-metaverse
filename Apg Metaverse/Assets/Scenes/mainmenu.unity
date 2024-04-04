@@ -193,7 +193,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: tutorial
+  m_Text: Tutorial
 --- !u!222 &72811198
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1959,7 +1959,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Enter
+  m_Text: Apg gebouw
 --- !u!222 &1678224116
 CanvasRenderer:
   m_ObjectHideFlags: 0
