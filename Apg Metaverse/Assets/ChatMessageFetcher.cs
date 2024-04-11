@@ -62,7 +62,7 @@ public class ChatMessageFetcher : MonoBehaviour
 
         foreach (string message in fetchedMessages)
         {
-            // Parse the message to extract the log count, sender, and message content
+            // Parse berichten om de log count, de sender en message content eruit te halen
             string[] parts = message.Split(':');
             if (parts.Length >= 3)
             {

@@ -11,21 +11,21 @@ public class dataloader : MonoBehaviour
 
     IEnumerator Start()
     {
-        UnityWebRequest ChatDataRequest = UnityWebRequest.Get("http://localhost/apg/chatdata.php"); // Connect to the data source
-        yield return ChatDataRequest.SendWebRequest(); // Wait until data is downloaded
+        UnityWebRequest ChatDataRequest = UnityWebRequest.Get("http://localhost/apg/chatdata.php"); // Connectie met data chatlog
+        yield return ChatDataRequest.SendWebRequest(); // Wacht tot de data is gedownload
 
         if (ChatDataRequest.result == UnityWebRequest.Result.Success)
         {
-            string ChatDataString = ChatDataRequest.downloadHandler.text; // Get the downloaded data
-            Debug.Log(ChatDataString); // Log the data
+            string ChatDataString = ChatDataRequest.downloadHandler.text; // haal gedownloade data
+            Debug.Log(ChatDataString); // Log de data
 
-            chat = ChatDataString.Split(';'); // Split the data into individual chat messages
+            chat = ChatDataString.Split(';'); // Split de data naar individuele chatberichten
 
-            // Iterate through the chat messages and pass them to the GameManager
+            // iteratie per chatbericht en stuur ze naar gamemanager
             foreach (string messageData in chat)
             {
-                string messageText = GetDataValue(messageData, "chat"); // Extract the chat message
-                gameManager.SendMessageToChat(messageText, Message.MessageType.info); // Pass the message to GameManager
+                string messageText = GetDataValue(messageData, "chat"); // haal chatbericht op
+                gameManager.SendMessageToChat(messageText, Message.MessageType.info); // stuur bericht naar de GameManager
             }
         }
         else
