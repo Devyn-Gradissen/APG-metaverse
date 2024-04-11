@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using TMPro;
 
-public class SaveSliderValue : MonoBehaviour
+public class SaveSliderToDatabase : MonoBehaviour
 {
     public Slider Helderheid;
     public Slider Volume;
@@ -12,28 +13,28 @@ public class SaveSliderValue : MonoBehaviour
     public Dropdown PushToTalk;
     public string phpScriptURL;
 
-    // Enum to represent options for PushToTalk dropdown
+    //PushToTalk dropdown
     public enum PushToTalkOption
     {
-        On,
-        Off
+        Aan,
+        Uit
     }
 
-    // Enum to represent options for Kleurenblind dropdown
+    // Kleurenblind dropdown
     public enum KleurenblindOption
     {
-        Option1,
-        Option2,
-        Option3,
-        Option4,
-        Option5
+        uit,
+        Trichromatopsie,
+        Dichromatopsie,
+        Monochromatopsie,
+        Achromatopsie
     }
-
+    // data save
     public void SaveDataToDatabase()
     {
         StartCoroutine(SendDataToDatabase());
     }
-
+    //data naar database sturen
     IEnumerator SendDataToDatabase()
     {
         Debug.Log("Helderheid Value: " + Helderheid.value.ToString());

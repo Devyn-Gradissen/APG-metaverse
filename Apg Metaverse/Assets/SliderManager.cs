@@ -9,7 +9,7 @@ public class SliderManager : MonoBehaviour
     // zorgen dat je de sliders kan koppelen in unity
     public Slider Helderheid;
     public Slider Volume;
-   
+
 
     public void SaveSliderValue()
     {
