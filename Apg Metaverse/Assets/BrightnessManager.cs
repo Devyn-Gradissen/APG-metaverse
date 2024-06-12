@@ -7,22 +7,22 @@ using UnityEngine.Networking;
 
 public class BrightnessManager : MonoBehaviour
 {
-    private string phpURL = "http://localhost/apg/Get_Brightness.php"; // URL to your PHP script
+    private string phpURL = "http://localhost/apg/Get_Brightness.php"; // URL van PHP script
 
     void Start()
     {
-        StartCoroutine(FetchHelderheid());
+        StartCoroutine(FetchHelderheid()); 
     }
 
     IEnumerator FetchHelderheid()
     {
         string username = DBmanager.username;
 
-        // Create a form for the POST request
+        // maak een form voor de POST request
         WWWForm form = new WWWForm();
         form.AddField("Username", username);
 
-        // Send the POST request to the PHP script
+        // stuur de POST request naar het PHP script
         using (UnityWebRequest www = UnityWebRequest.Post(phpURL, form))
         {
             yield return www.SendWebRequest();
@@ -33,26 +33,23 @@ public class BrightnessManager : MonoBehaviour
             }
             else
             {
-                // Extract the HelderheidValue from the response
+                // Haal de heldlerheid value op van de respons
                 string helderheidString = www.downloadHandler.text;
                 Debug.Log("Raw HelderheidValue received: " + helderheidString);
 
-                // Check if the response indicates no record was found
+                // Check of de respons aangeeft of er geen gegevens zijn gevonden
                 if (helderheidString.Contains("No record found for the username"))
                 {
-                    // Set to default value (100)
                     Screen.brightness = 1.0f;
                     Debug.Log("No record found. Screen brightness set to default value: 1.0");
                 }
                 else
                 {
-                    // Attempt to parse the HelderheidValue to float
+                    // probeer de helderheidvalue te parseren naar een float
                     if (float.TryParse(helderheidString, out float helderheidValue))
                     {
-                        // Set screen brightness to the received HelderheidValue (without normalization)
                         Screen.brightness = helderheidValue;
 
-                        // Log the updated brightness
                         Debug.Log("Screen brightness updated: " + Screen.brightness);
                     }
                     else
