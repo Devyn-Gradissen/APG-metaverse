@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(CapsuleCollider))]
 public class PlayerController : MonoBehaviour
 {
-    
+    public Animator animator;
     public float moveSpeed = 5f;
     public float mouseSensitivity = 2f; // Sensitivity of mouse movement
     public Camera playerCamera; // Assign the camera in the Unity editor
@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        animator = gameObject.GetComponent<Animator>();
+
         rb = GetComponent<Rigidbody>();
         capsuleCollider = GetComponent<CapsuleCollider>();
 
@@ -82,6 +84,18 @@ public class PlayerController : MonoBehaviour
                 Vector3 movement = (playerCamera.transform.forward * verticalInput + playerCamera.transform.right * horizontalInput).normalized;
                 movement.y = 0f; // Ensure no vertical movement
                 movement *= moveSpeed * Time.fixedDeltaTime;
+
+                // Check whether character stands still or is walking
+                if (movement == Vector3.zero)
+                {
+                    // Set the animator parameter IsMoving to false so that Unity stops the animation when you stop moving
+                    animator.SetBool("IsMoving", false);
+                }
+                else
+                {
+                    // Set the animator parameter IsMoving to true so that Unity starts the animation when you move
+                    animator.SetBool("IsMoving", true);
+                }
 
                 // Detect collisions and adjust movement direction
                 AdjustMovementDirection(ref movement);
