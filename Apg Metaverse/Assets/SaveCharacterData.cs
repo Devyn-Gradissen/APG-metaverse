@@ -12,7 +12,6 @@ public class SaveCharacterData : MonoBehaviour
     // URL for PHP script to save/update avatar.
     private string characterURL = "http://localhost/apg/AvatarUploader.php";
 
-    // References to other scripts
     //no gender script yet, and username is DBmanager.username.
     public SelectHairColor HairColorScript;
     public SelectPantsColor PantsColorScript;
