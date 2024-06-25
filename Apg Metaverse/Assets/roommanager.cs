@@ -35,11 +35,16 @@ public class roommanager : MonoBehaviourPunCallbacks
         Debug.Log("We're connected and in a room!");
         GameObject player = PhotonNetwork.Instantiate(Player.name, spawnPoint.position, Quaternion.identity);
 
-        // Ensure that the CameraController script is properly set up
         PlayerCameraController1 cameraController = player.GetComponent<PlayerCameraController1>();
         if (cameraController != null && cameraController.playerCamera == null)
         {
             cameraController.playerCamera = player.GetComponentInChildren<Camera>();
+        }
+
+        PlayerChat playerChat = player.GetComponent<PlayerChat>();
+        if (playerChat != null && playerChat.playerChatCanvas == null)
+        {
+            playerChat.playerChatCanvas = player.GetComponentInChildren<Canvas>();
         }
     }
 }
