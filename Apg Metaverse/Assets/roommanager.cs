@@ -62,7 +62,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
         base.OnJoinedRoom();
         Debug.Log("Joined Room!");
         GameObject player = PhotonNetwork.Instantiate(Player.name, spawnPoint.position, Quaternion.identity);
-        player.GetComponent<PlayerSetup>().ISLocalPlayer();
+        player.GetComponent<playersetup>().IsLocalPlayer();
         // Ensure that the CameraController script is properly set up
         PlayerCameraController1 cameraController = player.GetComponent<PlayerCameraController1>();
         if (cameraController != null && cameraController.playerCamera == null)
