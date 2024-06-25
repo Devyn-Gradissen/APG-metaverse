@@ -48,7 +48,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
         {
             Debug.Log("Joining or Creating Room...");
             RoomOptions roomOptions = new RoomOptions();
-            roomOptions.MaxPlayers = 10;
+            roomOptions.MaxPlayers = 20;
             PhotonNetwork.JoinOrCreateRoom("test", roomOptions, TypedLobby.Default);
         }
         else
@@ -61,8 +61,18 @@ public class RoomManager : MonoBehaviourPunCallbacks
     {
         base.OnJoinedRoom();
         Debug.Log("Joined Room!");
+
+        // Ensure that the player is only instantiated once per player
+        if (Player == null)
+        {
+            Debug.LogError("Player prefab is not assigned!");
+            return;
+        }
+
+        // PhotonNetwork.Instantiate will instantiate the object across the network
         GameObject player = PhotonNetwork.Instantiate(Player.name, spawnPoint.position, Quaternion.identity);
-        player.GetComponent<playersetup>().IsLocalPlayer();
+        Debug.Log("Player instantiated at position: " + spawnPoint.position);
+
         // Ensure that the CameraController script is properly set up
         PlayerCameraController1 cameraController = player.GetComponent<PlayerCameraController1>();
         if (cameraController != null && cameraController.playerCamera == null)
@@ -70,11 +80,27 @@ public class RoomManager : MonoBehaviourPunCallbacks
             cameraController.playerCamera = player.GetComponentInChildren<Camera>();
         }
 
-        PlayerChat playerChat = player.GetComponent<PlayerChat>();
-        if (playerChat != null && playerChat.playerChatCanvas == null)
+        // Log camera settings
+        if (cameraController != null && cameraController.playerCamera != null)
         {
-            playerChat.playerChatCanvas = player.GetComponentInChildren<Canvas>();
+            Debug.Log("Camera assigned to player");
         }
+        else
+        {
+            Debug.LogError("Camera not assigned to player");
+        }
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        base.OnPlayerEnteredRoom(newPlayer);
+        Debug.Log("New player entered room: " + newPlayer.NickName);
+    }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        base.OnPlayerLeftRoom(otherPlayer);
+        Debug.Log("Player left room: " + otherPlayer.NickName);
     }
 
     public override void OnDisconnected(DisconnectCause cause)
@@ -93,5 +119,11 @@ public class RoomManager : MonoBehaviourPunCallbacks
     {
         base.OnCreateRoomFailed(returnCode, message);
         Debug.LogError("Failed to create room: " + message);
-    } 
+    }
+
+    void Update()
+    {
+        Debug.Log("IsConnected: " + PhotonNetwork.IsConnected);
+        Debug.Log("IsInRoom: " + PhotonNetwork.InRoom);
+    }
 }

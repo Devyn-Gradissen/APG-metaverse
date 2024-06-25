@@ -176,6 +176,7 @@ GameObject:
   - component: {fileID: 350070054332470645}
   - component: {fileID: 5830276278107428743}
   - component: {fileID: 7276112028786692145}
+  - component: {fileID: -7806296518389762769}
   m_Layer: 0
   m_Name: Character
   m_TagString: MainCamera
@@ -372,6 +373,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 4315581567157863898}
+--- !u!114 &-7806296518389762769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325014590131845613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92fcae4fecd105d4bac173c2ce7689c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 325014590131845613}
+  xrRig: {fileID: 5759169403049746069, guid: ac18d4ffaf2fa684eb626d48b3b69d11, type: 3}
 --- !u!1 &358184553795367040
 GameObject:
   m_ObjectHideFlags: 0
@@ -2574,7 +2589,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -5254,11 +5269,6 @@ PrefabInstance:
 --- !u!224 &1469384774576171622 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5769530865155785479, guid: cae04e95f7f97a74ca601e7ee8d307dd, type: 3}
-  m_PrefabInstance: {fileID: 4932902199697713505}
-  m_PrefabAsset: {fileID: 0}
---- !u!223 &7742915823955416183 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 3387107696873618710, guid: cae04e95f7f97a74ca601e7ee8d307dd, type: 3}
   m_PrefabInstance: {fileID: 4932902199697713505}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &8431018351949865173 stripped
