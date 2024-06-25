@@ -48,7 +48,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
         {
             Debug.Log("Joining or Creating Room...");
             RoomOptions roomOptions = new RoomOptions();
-            roomOptions.MaxPlayers = 100;
+            roomOptions.MaxPlayers = 20;
             PhotonNetwork.JoinOrCreateRoom("test", roomOptions, TypedLobby.Default);
         }
         else
