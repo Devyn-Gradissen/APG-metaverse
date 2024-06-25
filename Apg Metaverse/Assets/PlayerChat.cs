@@ -19,5 +19,5 @@ public class PlayerChat : MonoBehaviourPun
             // Disable other players' Canvases
             playerChatCanvas.gameObject.SetActive(false);
         }
-    }
+    } 
 }

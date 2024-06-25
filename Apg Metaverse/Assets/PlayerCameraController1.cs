@@ -18,5 +18,5 @@ public class PlayerCameraController1 : MonoBehaviourPun
             // Disable other players' cameras
             playerCamera.gameObject.SetActive(false);
         }
-    }
+    } 
 }

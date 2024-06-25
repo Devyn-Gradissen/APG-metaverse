@@ -93,5 +93,5 @@ public class RoomManager : MonoBehaviourPunCallbacks
     {
         base.OnCreateRoomFailed(returnCode, message);
         Debug.LogError("Failed to create room: " + message);
-    }
+    } 
 }
