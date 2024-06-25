@@ -69,6 +69,12 @@ public class RoomManager : MonoBehaviourPunCallbacks
         {
             cameraController.playerCamera = player.GetComponentInChildren<Camera>();
         }
+
+        PlayerChat playerChat = player.GetComponent<PlayerChat>();
+        if (playerChat != null && playerChat.playerChatCanvas == null)
+        {
+            playerChat.playerChatCanvas = player.GetComponentInChildren<Canvas>();
+        }
     }
 
     public override void OnDisconnected(DisconnectCause cause)
