@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class RoomManager : MonoBehaviourPunCallbacks
+public class roommanager : MonoBehaviourPunCallbacks
 {
     public GameObject PlayerPrefab;
     public Transform spawnPoint;

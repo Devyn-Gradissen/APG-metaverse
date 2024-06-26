@@ -244,7 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 4898536811532698715}
   moveSpeed: 3
-  runSpeed: 10
+  runSpeed: 9
   mouseSensitivity: 2
   playerCamera: {fileID: 3502674405862123980}
 --- !u!136 &4097078665115397307
@@ -2530,7 +2530,7 @@ Transform:
   m_GameObject: {fileID: 4315581567157863898}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.317, z: 0.026004076}
+  m_LocalPosition: {x: 0, y: 0.332, z: 0.092}
   m_LocalScale: {x: 1.4399055, y: 0.535135, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
