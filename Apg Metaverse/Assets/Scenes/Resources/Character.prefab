@@ -242,7 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67d47a1fabba58c498902c64ff6990da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 4898536811532698715}
   moveSpeed: 3
   mouseSensitivity: 2
   playerCamera: {fileID: 3502674405862123980}
