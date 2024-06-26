@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour
                     animator.SetBool("IsMoving", false);
                     animator.SetBool("IsRunning", false);
                 }
-                else if (isRunning == true)
+                else if (currentSpeed == runSpeed)
                 {
                     animator.SetBool("IsRunning", true);
                 }
