@@ -175,9 +175,8 @@ GameObject:
   - component: {fileID: 4639741308195901032}
   - component: {fileID: 350070054332470645}
   - component: {fileID: 5830276278107428743}
-  - component: {fileID: 7276112028786692145}
   m_Layer: 0
-  m_Name: Character
+  m_Name: Character 1
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -359,19 +358,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 3502674405862123980}
---- !u!114 &7276112028786692145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 325014590131845613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f59e1f73e2796a04ba1570771319b30e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camera: {fileID: 4315581567157863898}
 --- !u!1 &358184553795367040
 GameObject:
   m_ObjectHideFlags: 0
@@ -5254,11 +5240,6 @@ PrefabInstance:
 --- !u!224 &1469384774576171622 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5769530865155785479, guid: cae04e95f7f97a74ca601e7ee8d307dd, type: 3}
-  m_PrefabInstance: {fileID: 4932902199697713505}
-  m_PrefabAsset: {fileID: 0}
---- !u!223 &7742915823955416183 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 3387107696873618710, guid: cae04e95f7f97a74ca601e7ee8d307dd, type: 3}
   m_PrefabInstance: {fileID: 4932902199697713505}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &8431018351949865173 stripped

@@ -6,12 +6,11 @@ public class playersetup : MonoBehaviour
 {
 
 
-
 public GameObject camera;
 
 public void IsLocalPlayer()
  {
-
+  
     camera.SetActive(true);
 }
 }
