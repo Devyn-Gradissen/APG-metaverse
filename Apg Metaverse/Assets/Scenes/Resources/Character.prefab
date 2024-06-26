@@ -244,6 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 4898536811532698715}
   moveSpeed: 3
+  runSpeed: 10
   mouseSensitivity: 2
   playerCamera: {fileID: 3502674405862123980}
 --- !u!136 &4097078665115397307

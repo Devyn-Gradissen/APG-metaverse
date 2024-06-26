@@ -6,7 +6,7 @@ using Photon.Realtime;
 
 public class RoomManager : MonoBehaviourPunCallbacks
 {
-    public GameObject Player;
+    public GameObject PlayerPrefab;
     public Transform spawnPoint;
 
     void Start()
@@ -61,20 +61,28 @@ public class RoomManager : MonoBehaviourPunCallbacks
     {
         base.OnJoinedRoom();
         Debug.Log("Joined Room!");
-        GameObject player = PhotonNetwork.Instantiate(Player.name, spawnPoint.position, Quaternion.identity);
-        player.GetComponent<playersetup>().IsLocalPlayer();
-        // Ensure that the CameraController script is properly set up
-        PlayerCameraController1 cameraController = player.GetComponent<PlayerCameraController1>();
-        if (cameraController != null && cameraController.playerCamera == null)
+
+        if (PlayerPrefab == null)
         {
-            cameraController.playerCamera = player.GetComponentInChildren<Camera>();
+            Debug.LogError("Player prefab is not assigned!");
+            return;
         }
 
-        PlayerChat playerChat = player.GetComponent<PlayerChat>();
-        if (playerChat != null && playerChat.playerChatCanvas == null)
-        {
-            playerChat.playerChatCanvas = player.GetComponentInChildren<Canvas>();
-        }
+        // PhotonNetwork.Instantiate will instantiate the object across the network
+        GameObject player = PhotonNetwork.Instantiate(PlayerPrefab.name, spawnPoint.position, Quaternion.identity);
+        Debug.Log("Player instantiated at position: " + spawnPoint.position);
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        base.OnPlayerEnteredRoom(newPlayer);
+        Debug.Log("New player entered room: " + newPlayer.NickName);
+    }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        base.OnPlayerLeftRoom(otherPlayer);
+        Debug.Log("Player left room: " + otherPlayer.NickName);
     }
 
     public override void OnDisconnected(DisconnectCause cause)
@@ -93,5 +101,11 @@ public class RoomManager : MonoBehaviourPunCallbacks
     {
         base.OnCreateRoomFailed(returnCode, message);
         Debug.LogError("Failed to create room: " + message);
-    } 
+    }
+
+    void Update()
+    {
+        Debug.Log("IsConnected: " + PhotonNetwork.IsConnected);
+        Debug.Log("IsInRoom: " + PhotonNetwork.InRoom);
+    }
 }
