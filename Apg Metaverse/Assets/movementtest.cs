@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public Animator animator;
     public float moveSpeed = 5f;
+    public float runSpeed = 10f; // Speed when running
     public float mouseSensitivity = 2f; // Sensitivity of mouse movement
     public Camera playerCamera; // Assign the camera in the Unity editor
 
@@ -80,12 +81,16 @@ public class PlayerController : MonoBehaviour
                 float horizontalInput = Input.GetAxis("Horizontal");
                 float verticalInput = Input.GetAxis("Vertical");
 
+                // Check if the Shift key is held down for running
+                bool isRunning = Input.GetKey(KeyCode.LeftShift) && verticalInput > 0;
+                float currentSpeed = isRunning ? runSpeed : moveSpeed;
+
                 // Calculate movement direction based on camera orientation
                 Vector3 movement = (playerCamera.transform.forward * verticalInput + playerCamera.transform.right * horizontalInput).normalized;
                 movement.y = 0f; // Ensure no vertical movement
-                movement *= moveSpeed * Time.fixedDeltaTime;
+                movement *= currentSpeed * Time.fixedDeltaTime;
 
-                // Check whether character stands still or is walking
+                // Check whether character stands still or is walking/running
                 if (movement == Vector3.zero)
                 {
                     // Set the animator parameter IsMoving to false so that Unity stops the animation when you stop moving
