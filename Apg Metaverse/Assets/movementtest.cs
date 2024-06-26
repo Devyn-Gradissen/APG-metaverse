@@ -6,7 +6,6 @@ public class PlayerController : MonoBehaviour
 {
     public Animator animator;
     public float moveSpeed = 5f;
-    public float sprintSpeed = 12f;
     public float mouseSensitivity = 2f; // Sensitivity of mouse movement
     public Camera playerCamera; // Assign the camera in the Unity editor
 
@@ -17,7 +16,6 @@ public class PlayerController : MonoBehaviour
 
     private GameManager gameManager; // Reference to the GameManager script
     private bool isMovementEnabled = true; // Flag to track if movement is enabled
-    private bool sprinting = false;
 
     void Start()
     {
@@ -98,8 +96,6 @@ public class PlayerController : MonoBehaviour
                     // Set the animator parameter IsMoving to true so that Unity starts the animation when you move
                     animator.SetBool("IsMoving", true);
                 }
-
-                sprinting = Input.GetButton("Sprint");
 
                 // Detect collisions and adjust movement direction
                 AdjustMovementDirection(ref movement);
