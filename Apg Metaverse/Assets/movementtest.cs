@@ -1,8 +1,9 @@
 using UnityEngine;
+using Photon.Pun;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviourPun
 {
     public Animator animator;
     public float moveSpeed = 5f;
@@ -20,6 +21,13 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        if (!photonView.IsMine)
+        {
+            // Disable the script for non-local players
+            this.enabled = false;
+            return;
+        }
+
         animator = gameObject.GetComponent<Animator>();
 
         rb = GetComponent<Rigidbody>();
@@ -46,7 +54,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (enabled && isMovementEnabled) // Check if movement and script are enabled
+        if (photonView.IsMine && enabled && isMovementEnabled) // Check if movement and script are enabled
         {
             if (!gameManager.chatBox.isFocused) // Check if the chat input field is not focused
             {
@@ -73,7 +81,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (enabled && isMovementEnabled) // Check if movement and script are enabled
+        if (photonView.IsMine && enabled && isMovementEnabled) // Check if movement and script are enabled
         {
             if (!gameManager.chatBox.isFocused) // Check if the chat input field is not focused
             {
