@@ -75,16 +75,7 @@ public class PlayerController : MonoBehaviourPun
                     if (Mathf.Abs(mouseY) > 0.01f)
                         playerCamera.transform.localRotation = Quaternion.Euler(verticalLookRotation, 0f, 0f);
                 }
-            }
-        }
-    }
 
-    void FixedUpdate()
-    {
-        if (photonView.IsMine && enabled && isMovementEnabled) // Check if movement and script are enabled
-        {
-            if (!gameManager.chatBox.isFocused) // Check if the chat input field is not focused
-            {
                 // Movement input
                 float horizontalInput = Input.GetAxis("Horizontal");
                 float verticalInput = Input.GetAxis("Vertical");
@@ -93,34 +84,34 @@ public class PlayerController : MonoBehaviourPun
                 bool isRunning = Input.GetKey(KeyCode.LeftShift) && verticalInput > 0;
                 float currentSpeed = isRunning ? runSpeed : moveSpeed;
 
+                // Set the animator parameters based on the movement state
+                bool isMoving = horizontalInput != 0 || verticalInput != 0;
+                animator.SetBool("IsMoving", isMoving);
+                animator.SetBool("IsRunning", isRunning);
+
                 // Calculate movement direction based on camera orientation
                 Vector3 movement = (playerCamera.transform.forward * verticalInput + playerCamera.transform.right * horizontalInput).normalized;
                 movement.y = 0f; // Ensure no vertical movement
-                movement *= currentSpeed * Time.fixedDeltaTime;
-
-                // Check whether character stands still or is walking/running
-                if (movement == Vector3.zero)
-                {
-                    // Set the animator parameter IsMoving to false so that Unity stops the animation when you stop moving
-                    animator.SetBool("IsMoving", false);
-                    animator.SetBool("IsRunning", false);
-                }
-                else if (currentSpeed == runSpeed)
-                {
-                    animator.SetBool("IsRunning", true);
-                }
-                else
-                {
-                    // Set the animator parameter IsMoving to true so that Unity starts the animation when you move
-                    animator.SetBool("IsMoving", true);
-                    animator.SetBool("IsRunning", false);
-                }
-
-                // Detect collisions and adjust movement direction
-                AdjustMovementDirection(ref movement);
+                movement *= currentSpeed * Time.deltaTime;
 
                 // Move the player using physics
-                rb.MovePosition(transform.position + movement);
+                if (movement != Vector3.zero)
+                {
+                    rb.MovePosition(transform.position + movement);
+                }
+            }
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (photonView.IsMine && enabled && isMovementEnabled) // Check if movement and script are enabled
+        {
+            // Here you can handle any physics-based movement adjustments if needed, but the main input handling has been moved to Update
+            if (!gameManager.chatBox.isFocused) // Check if the chat input field is not focused
+            {
+                // Detect collisions and adjust movement direction if necessary
+                // (This can be moved to the FixedUpdate if you prefer to handle physics here)
             }
         }
     }
