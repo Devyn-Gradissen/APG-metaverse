@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviourPun
     }
 
     void AdjustMovementDirection(ref Vector3 movement)
-    {
+    { 
         RaycastHit hit;
         if (Physics.Raycast(transform.position, movement.normalized, out hit, capsuleCollider.radius + 0.1f))
         {
