@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class RoomManager : MonoBehaviourPunCallbacks
+public class roommanager : MonoBehaviourPunCallbacks
 {
     public GameObject PlayerPrefab;
     public Transform spawnPoint;
@@ -68,10 +68,9 @@ public class RoomManager : MonoBehaviourPunCallbacks
             return;
         }
 
-        // Instantiate player a bit above the spawn point to avoid initial collisions with the floor
-        Vector3 spawnPosition = spawnPoint.position + Vector3.up * 1.0f;
-        GameObject player = PhotonNetwork.Instantiate(PlayerPrefab.name, spawnPosition, Quaternion.identity);
-        Debug.Log("Player instantiated at position: " + spawnPosition);
+        // PhotonNetwork.Instantiate will instantiate the object across the network
+        GameObject player = PhotonNetwork.Instantiate(PlayerPrefab.name, spawnPoint.position, Quaternion.identity);
+        Debug.Log("Player instantiated at position: " + spawnPoint.position);
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)

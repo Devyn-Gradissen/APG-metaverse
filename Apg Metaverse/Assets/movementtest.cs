@@ -92,23 +92,38 @@ public class PlayerController : MonoBehaviourPun
                 // Calculate movement direction based on camera orientation
                 Vector3 movement = (playerCamera.transform.forward * verticalInput + playerCamera.transform.right * horizontalInput).normalized;
                 movement.y = 0f; // Ensure no vertical movement
-                movement *= currentSpeed;
+                movement *= currentSpeed * Time.deltaTime;
 
                 // Move the player using physics
-                MovePlayer(movement);
+                if (movement != Vector3.zero)
+                {
+                    rb.MovePosition(transform.position + movement);
+                }
             }
         }
     }
 
     void FixedUpdate()
     {
-        // FixedUpdate can be used for additional physics-based adjustments if needed
+        if (photonView.IsMine && enabled && isMovementEnabled) // Check if movement and script are enabled
+        {
+            // Here you can handle any physics-based movement adjustments if needed, but the main input handling has been moved to Update
+            if (!gameManager.chatBox.isFocused) // Check if the chat input field is not focused
+            {
+                // Detect collisions and adjust movement direction if necessary
+                // (This can be moved to the FixedUpdate if you prefer to handle physics here)
+            }
+        }
     }
 
-    private void MovePlayer(Vector3 movement)
-    {
-        Vector3 newPosition = rb.position + movement * Time.deltaTime;
-        rb.MovePosition(newPosition);
+    void AdjustMovementDirection(ref Vector3 movement)
+    { 
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, movement.normalized, out hit, capsuleCollider.radius + 0.1f))
+        {
+            // If the raycast hits a wall, adjust movement direction to prevent climbing
+            movement = Vector3.ProjectOnPlane(movement, hit.normal);
+        }
     }
 
     public void ToggleMovement(bool isEnabled)
