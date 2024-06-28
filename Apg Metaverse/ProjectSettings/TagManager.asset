@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Wall
   - VRButton
+  - Anchor
+  - Bullet
+  - ground
   layers:
   - Default
   - TransparentFX
