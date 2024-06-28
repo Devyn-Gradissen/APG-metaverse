@@ -6,8 +6,8 @@ using Photon.Pun;
 public class PlayerController : MonoBehaviourPun
 {
     public Animator animator;
-    public float moveSpeed = 5f;
-    public float runSpeed = 10f; // Speed when running
+    public float moveSpeed = 3f;
+    public float runSpeed = 5f; // Speed when running
     public float mouseSensitivity = 2f; // Sensitivity of mouse movement
     public Camera playerCamera; // Assign the camera in the Unity editor
 
