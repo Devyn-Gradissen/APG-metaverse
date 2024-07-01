@@ -1,88 +1,109 @@
 using UnityEngine;
+using Photon.Pun;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
-public class PlayerController : MonoBehaviour
+[RequireComponent(typeof(PhotonAnimatorView))]
+[RequireComponent(typeof(PhotonTransformView))]
+public class PlayerController : MonoBehaviourPun
 {
-    public float moveSpeed = 5f;
-    public float mouseSensitivity = 2f; // Sensitivity of mouse movement
-    public Camera playerCamera; // Assign the camera in the Unity editor
-    
+    public Animator animator;
+    public float moveSpeed = 3f;
+    public float runSpeed = 5f;
+    public float mouseSensitivity = 2f;
+    public Camera playerCamera;
+
     private Rigidbody rb;
     private CapsuleCollider capsuleCollider;
     private float verticalLookRotation = 0f;
     private float horizontalRotation = 0f;
 
+    private GameManager gameManager;
+    private bool isMovementEnabled = true;
+    private Vector3 movementInput;
+
     void Start()
     {
+        if (!photonView.IsMine)
+        {
+            this.enabled = false;
+            return;
+        }
+
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         capsuleCollider = GetComponent<CapsuleCollider>();
 
-        // Create a physics material with increased friction
         PhysicMaterial material = new PhysicMaterial();
-        material.dynamicFriction = 2.0f; // Increase friction further
-        material.staticFriction = 2.0f; // Increase friction further
-
-        // Assign the physics material to the character's collider
+        material.dynamicFriction = 2.0f;
+        material.staticFriction = 2.0f;
         capsuleCollider.material = material;
 
-        // Freeze rotation along X and Z axes
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        rb.angularDrag = 5f;
+        rb.interpolation = RigidbodyInterpolation.Interpolate;
 
-        // Increase angular drag
-        rb.angularDrag = 5f; // Example value, adjust as needed
-
-        // Hide the mouse cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
     void Update()
     {
-        // Camera rotation input
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
-
-        // Rotate the player horizontally
-        horizontalRotation += mouseX;
-        transform.rotation = Quaternion.Euler(0f, horizontalRotation, 0f);
-
-        // Rotate the camera vertically
-        verticalLookRotation -= mouseY;
-        verticalLookRotation = Mathf.Clamp(verticalLookRotation, -90f, 90f); // Clamp vertical rotation to prevent flipping
-        if (playerCamera != null) // Check if the camera is assigned
+        if (photonView.IsMine && enabled && isMovementEnabled)
         {
-            // Rotate the camera vertically only if there's mouse movement
-            if (Mathf.Abs(mouseY) > 0.01f)
-                playerCamera.transform.localRotation = Quaternion.Euler(verticalLookRotation, 0f, 0f);
+            if (!gameManager.chatBox.isFocused)
+            {
+                float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
+                float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+
+                horizontalRotation += mouseX;
+                transform.rotation = Quaternion.Euler(0f, horizontalRotation, 0f);
+
+                verticalLookRotation -= mouseY;
+                verticalLookRotation = Mathf.Clamp(verticalLookRotation, -90f, 90f);
+                if (playerCamera != null && Mathf.Abs(mouseY) > 0.01f)
+                {
+                    playerCamera.transform.localRotation = Quaternion.Euler(verticalLookRotation, 0f, 0f);
+                }
+
+                float horizontalInput = Input.GetAxis("Horizontal");
+                float verticalInput = Input.GetAxis("Vertical");
+
+                bool isRunning = Input.GetKey(KeyCode.LeftShift) && verticalInput > 0;
+                float currentSpeed = isRunning ? runSpeed : moveSpeed;
+
+                bool isMoving = horizontalInput != 0 || verticalInput != 0;
+                animator.SetBool("IsMoving", isMoving);
+                animator.SetBool("IsRunning", isRunning);
+
+                movementInput = (playerCamera.transform.forward * verticalInput + playerCamera.transform.right * horizontalInput).normalized;
+                movementInput.y = 0f;
+                movementInput *= currentSpeed;
+            }
         }
     }
 
     void FixedUpdate()
     {
-        // Movement input
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-
-        // Calculate movement direction based on camera orientation
-        Vector3 movement = (playerCamera.transform.forward * verticalInput + playerCamera.transform.right * horizontalInput).normalized;
-        movement.y = 0f; // Ensure no vertical movement
-        movement *= moveSpeed * Time.fixedDeltaTime;
-
-        // Detect collisions and adjust movement direction
-        AdjustMovementDirection(ref movement);
-
-        // Move the player using physics
-        rb.MovePosition(transform.position + movement);
+        if (photonView.IsMine && enabled && isMovementEnabled)
+        {
+            if (!gameManager.chatBox.isFocused)
+            {
+                if (movementInput != Vector3.zero)
+                {
+                    rb.MovePosition(rb.position + movementInput * Time.fixedDeltaTime);
+                }
+            }
+        }
     }
 
-    void AdjustMovementDirection(ref Vector3 movement)
+    public void ToggleMovement(bool isEnabled)
     {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, movement.normalized, out hit, capsuleCollider.radius + 0.1f))
-        {
-            // If the raycast hits a wall, adjust movement direction to prevent climbing
-            movement = Vector3.ProjectOnPlane(movement, hit.normal);
-        }
+        isMovementEnabled = isEnabled;
+    }
+
+    public void SetGameManager(GameManager manager)
+    {
+        gameManager = manager;
     }
 }

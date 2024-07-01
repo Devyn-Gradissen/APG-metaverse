@@ -8,7 +8,7 @@ public class datainserter : MonoBehaviour
     public string inputid; // krijg de input van de gebruiker
     public string inputchat; // krijg de input van de gebruiker
 
-    string CreateUserURL = "http://localhost/phpmyadmin/index.php?route=/database/structure&server=1&db=chatdata"; //maak verbinding met de database
+    string CreateUserURL = "http://localhost/apg/chatdata.php"; //maak verbinding met de database
 
     // Start is called before the first frame update
     void Start()

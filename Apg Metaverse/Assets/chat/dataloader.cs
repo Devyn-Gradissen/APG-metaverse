@@ -1,23 +1,32 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.Networking; // Import UnityWebRequest
+using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class dataloader : MonoBehaviour
 {
+    public GameManager gameManager; // Reference to the GameManager script
     public string[] chat;
 
     IEnumerator Start()
     {
-        UnityWebRequest ChatDataRequest = UnityWebRequest.Get("http://localhost/school%20leerjaar%203/chatdata/ChatData.php"); //connectie met de data
-        yield return ChatDataRequest.SendWebRequest(); // wacht totdat data is gedownload
-        
+        UnityWebRequest ChatDataRequest = UnityWebRequest.Get("http://localhost/apg/chatdata.php"); // Connectie met data chatlog
+        yield return ChatDataRequest.SendWebRequest(); // Wacht tot de data is gedownload
+
         if (ChatDataRequest.result == UnityWebRequest.Result.Success)
         {
-            string ChatDataString = ChatDataRequest.downloadHandler.text; //maak de data klaar om te zien
-            Debug.Log(ChatDataString); // laat de data zien
-            
-            chat = ChatDataString.Split(';');
-            Debug.Log(GetDataValue(chat[0], "chat")); // Replace "your_index_here" with the actual index you want to retrieve
+            string ChatDataString = ChatDataRequest.downloadHandler.text; // haal gedownloade data
+            Debug.Log(ChatDataString); // Log de data
+
+            chat = ChatDataString.Split(';'); // Split de data naar individuele chatberichten
+
+            // iteratie per chatbericht en stuur ze naar gamemanager
+            foreach (string messageData in chat)
+            {
+                string messageText = GetDataValue(messageData, "chat"); // haal chatbericht op
+                gameManager.SendMessageToChat(messageText, Message.MessageType.info); // stuur bericht naar de GameManager
+            }
         }
         else
         {
