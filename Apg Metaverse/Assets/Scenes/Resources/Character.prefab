@@ -177,13 +177,14 @@ GameObject:
   - component: {fileID: 5830276278107428743}
   - component: {fileID: 7276112028786692145}
   - component: {fileID: 7462958700669257840}
+  - component: {fileID: 7680004304377028652}
   m_Layer: 0
   m_Name: Character
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7222684022374745384
 Transform:
   m_ObjectHideFlags: 0
@@ -245,7 +246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 4898536811532698715}
   moveSpeed: 3
-  runSpeed: 5
+  runSpeed: 7
   mouseSensitivity: 2
   playerCamera: {fileID: 3502674405862123980}
 --- !u!136 &4097078665115397307
@@ -325,10 +326,11 @@ MonoBehaviour:
   prefixField: -1
   Synchronization: 3
   OwnershipTransfer: 0
-  observableSearch: 2
+  observableSearch: 0
   ObservedComponents:
   - {fileID: 3409492446529826613}
   - {fileID: 350070054332470645}
+  - {fileID: 7680004304377028652}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -388,6 +390,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 325014590131845613}
   xrRig: {fileID: 1742228301716457560, guid: c1fa1829e94c61341a3c2c5aa42c9102, type: 3}
+--- !u!114 &7680004304377028652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325014590131845613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 0
+    Name: IsMoving
+  - Type: 4
+    SynchronizeType: 0
+    Name: IsRunning
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
 --- !u!1 &358184553795367040
 GameObject:
   m_ObjectHideFlags: 0
