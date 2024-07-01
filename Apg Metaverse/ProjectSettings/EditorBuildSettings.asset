@@ -18,6 +18,12 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 55daccc09a3b69647bbab145b54a3ab3
   - enabled: 1
+    path: Assets/Scenes/Character Customization/CharacterCustomization 2.0.unity
+    guid: c6bdddfbd94f5bd489fedffc8558e0a8
+  - enabled: 1
+    path: Assets/Scenes/Tutorial Scene.unity
+    guid: 23c45235e920a604bb3ffb1c8a1987ae
+  - enabled: 1
     path: Assets/Scenes/instellingen.unity
     guid: dc4b920444f10f64e9c6c0a32bd4bd1b
   - enabled: 1
@@ -29,4 +35,4 @@ EditorBuildSettings:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 9bec1ce6a03ccba4b9a8215241b32e63, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: a49cadc1a815591479693b955ccf08c1, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 1a4c68ca72a83449f938d669337cb305, type: 2}
-    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: a9a6963505ddf7f4d886008c6dc86122, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: d7f87204fe7474941bd8a1b0c975c9c5, type: 2}

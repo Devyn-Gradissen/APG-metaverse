@@ -12,7 +12,10 @@ public class mainmenuscript : MonoBehaviour
     public Button loginButton;
     public Button playButton; 
     public Button exitButton; 
-    public Text playerDisplay; 
+    public Button customize_your_character;
+    public Button tutorial;
+    public Button instellingen;
+    public Text playerDisplay;
 
     // Start functie roept meteen op
     private void Start()
@@ -20,12 +23,16 @@ public class mainmenuscript : MonoBehaviour
         // Controleer of gebruiker is ingelogd.
         if (DBmanager.LoggedIn)
         {
-            playerDisplay.text = " Ingelogd als: " + DBmanager.firstname + " " + DBmanager.initials + " " + DBmanager.lastname + "\n Welkom bij de APG virtuele omgeving.";
+            playerDisplay.text = " Ingelogd als: " + DBmanager.username + "\n Welkom bij de APG virtuele omgeving.";
+            //playerDisplay.text = " Ingelogd als: " + DBmanager.firstname + " " + DBmanager.initials + " " + DBmanager.lastname + "\n Welkom bij de APG virtuele omgeving.";
         }
 
         registerButton.interactable = !DBmanager.LoggedIn;
         loginButton.interactable = !DBmanager.LoggedIn;
         playButton.interactable = DBmanager.LoggedIn;
+        customize_your_character.interactable = DBmanager.LoggedIn;
+        tutorial.interactable = DBmanager.LoggedIn;
+        instellingen.interactable = DBmanager.LoggedIn;
     }
 
     // Sturen naar registratie.
@@ -44,6 +51,20 @@ public class mainmenuscript : MonoBehaviour
     public void GoToAPG()
     {
         SceneManager.LoadScene(3); 
+    }
+
+    public void GoToCustomize()
+    {
+        SceneManager.LoadScene(4); 
+    }
+
+    public void GoToTutorial()
+    {
+        SceneManager.LoadScene(5); 
+    }
+    public void GoToInstellingen()
+    {
+        SceneManager.LoadScene(6); 
     }
 
     // Method to exit the application
