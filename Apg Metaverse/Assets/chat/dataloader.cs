@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class dataloader : MonoBehaviour
 {
-    public GameManager gameManager; // Reference to the GameManager script
+    public GameManager2 gameManager2; // Reference to the GameManager script
     public string[] chat;
 
     IEnumerator Start()
@@ -25,7 +25,7 @@ public class dataloader : MonoBehaviour
             foreach (string messageData in chat)
             {
                 string messageText = GetDataValue(messageData, "chat"); // haal chatbericht op
-                gameManager.SendMessageToChat(messageText, Message.MessageType.info); // stuur bericht naar de GameManager
+                gameManager2.SendMessageToChat(messageText, Message.MessageType.info); // stuur bericht naar de GameManager
             }
         }
         else

@@ -5367,7 +5367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dce25ea042d75d4d826ed4b2ac67d1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
+  gameManager2: {fileID: 0}
   chat: []
 --- !u!114 &9025332438327685815 stripped
 MonoBehaviour:
