@@ -105,7 +105,6 @@ public class roommanager : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        Debug.Log("IsConnected: " + PhotonNetwork.IsConnected);
-        Debug.Log("IsInRoom: " + PhotonNetwork.InRoom);
+      
     }
 }
