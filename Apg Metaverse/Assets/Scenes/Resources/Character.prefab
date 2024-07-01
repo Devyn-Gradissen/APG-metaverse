@@ -406,13 +406,13 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: IsMoving
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: IsRunning
   m_SynchronizeLayers:
-  - SynchronizeType: 0
+  - SynchronizeType: 2
     LayerIndex: 0
 --- !u!1 &358184553795367040
 GameObject:
