@@ -4,7 +4,7 @@ using Photon.Pun;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
 [RequireComponent(typeof(PhotonAnimatorView))]
-[RequireComponent(typeof(PhotonTransformView))] // Ensure PhotonTransformView is attached
+[RequireComponent(typeof(PhotonTransformView))]
 public class PlayerController : MonoBehaviourPun
 {
     public Animator animator;
@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviourPun
 
     private GameManager gameManager;
     private bool isMovementEnabled = true;
+    private Vector3 movementInput;
 
     void Start()
     {
@@ -30,7 +31,6 @@ public class PlayerController : MonoBehaviourPun
         }
 
         animator = GetComponent<Animator>();
-
         rb = GetComponent<Rigidbody>();
         capsuleCollider = GetComponent<CapsuleCollider>();
 
@@ -41,8 +41,7 @@ public class PlayerController : MonoBehaviourPun
 
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         rb.angularDrag = 5f;
-
-        rb.interpolation = RigidbodyInterpolation.Interpolate; // Enable interpolation
+        rb.interpolation = RigidbodyInterpolation.Interpolate;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -77,14 +76,9 @@ public class PlayerController : MonoBehaviourPun
                 animator.SetBool("IsMoving", isMoving);
                 animator.SetBool("IsRunning", isRunning);
 
-                Vector3 movement = (playerCamera.transform.forward * verticalInput + playerCamera.transform.right * horizontalInput).normalized;
-                movement.y = 0f;
-                movement *= currentSpeed * Time.deltaTime;
-
-                if (movement != Vector3.zero)
-                {
-                    rb.MovePosition(transform.position + movement);
-                }
+                movementInput = (playerCamera.transform.forward * verticalInput + playerCamera.transform.right * horizontalInput).normalized;
+                movementInput.y = 0f;
+                movementInput *= currentSpeed;
             }
         }
     }
@@ -95,17 +89,11 @@ public class PlayerController : MonoBehaviourPun
         {
             if (!gameManager.chatBox.isFocused)
             {
-                // Handle physics-based movement adjustments here if needed
+                if (movementInput != Vector3.zero)
+                {
+                    rb.MovePosition(rb.position + movementInput * Time.fixedDeltaTime);
+                }
             }
-        }
-    }
-
-    void AdjustMovementDirection(ref Vector3 movement)
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, movement.normalized, out hit, capsuleCollider.radius + 0.1f))
-        {
-            movement = Vector3.ProjectOnPlane(movement, hit.normal);
         }
     }
 
