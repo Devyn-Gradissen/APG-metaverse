@@ -3,7 +3,8 @@ using Photon.Pun;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
-[RequireComponent(typeof(PhotonAnimatorView))] // Ensure PhotonAnimatorView is attached
+[RequireComponent(typeof(PhotonAnimatorView))]
+[RequireComponent(typeof(PhotonTransformView))] // Ensure PhotonTransformView is attached
 public class PlayerController : MonoBehaviourPun
 {
     public Animator animator;
@@ -40,6 +41,8 @@ public class PlayerController : MonoBehaviourPun
 
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         rb.angularDrag = 5f;
+
+        rb.interpolation = RigidbodyInterpolation.Interpolate; // Enable interpolation
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
